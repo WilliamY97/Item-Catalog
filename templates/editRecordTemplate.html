@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Edit Template {% endblock %}
+{% block header %} {{catalog.name}} - {{category.name}}: Rename {{rTemplate.name}} {% endblock %}
+{% block content %}
+
+<div>
+	<form action="#" method="post">
+		<div>
+			<label for="new-rt-name"> New name for {{rTemplate.name}} </label>
+			<input type="text" name="new-rt-name" id="new-rt-name" class="mdl-textfield__input">
+		</div>
+		<button type="submit"> <i class="material-icons"> done </i> </button>
+		<a href={{ url_for('addRecord', catalog_id=catalog.id, category_id=category.id) }}> <i class="material-icons"> clear </i> </a>
+	</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} View Catalogs {% endblock %}
+{% block header %} CatalogIt {% endblock %}
+{% block content %}
+
+<div>
+	<a href={{ url_for('newCatalog') }}> Create New Catalog </a>
+</div>
+
+<div>
+	{% if catalogs %}
+		<h3> Your Catalogs </h3>
+		<ul>
+			{% for catalog in catalogs %}
+				<li>
+					<a href={{ url_for('viewCategories', catalog_id=catalog.id )}}> {{ catalog.name }} </a>
+					{% if current_user == catalog.user_id %}
+						<a href={{ url_for('editCatalog', catalog_id=catalog.id )}} <i class="material-icons"> mode_edit </i> </a>
+						<a href={{ url_for('deleteCatalog', catalog_id=catalog.id )}} <i class="material-icons"> delete </i> </a>
+					{% endif %}
+				</li>
+
+			{% endfor %}
+		</ul>
+	{% endif %}
+</div>
+
+{% endblock %}

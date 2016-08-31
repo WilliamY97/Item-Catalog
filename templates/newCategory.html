@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} New Category {% endblock %}
+{% block header %} {{catalog.name}} - New Category Name {% endblock %}
+{% block content %}
+
+<div>
+	<form action="#" method="post">
+		<div>
+			<label for="category-name"> Category Name </label>
+			<input type="text" name="category-name" id="category-name">
+			<br>
+		</div>
+		<button type="submit"> <i class="material-icons"> done </i> </button>
+		<a href={{ url_for('viewCategories', catalog_id=catalog.id) }}> <i class="material-icons"> clear </i> </a>
+	</form>
+</div>
+
+{% endblock %}

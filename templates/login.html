@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+{% block files %}
+{# Google sign in button pre-requisites #}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="//apis.google.com/js/platform.js?onload=start" async defer> </script>
+{% endblock %}
+{% block header %} Login {% endblock %}
+{% block content %}
+
+{# Google plus sign in button #}
+<div id="signInButton">
+	<span class="g-signin"
+	data-scope="openid email"
+	data-clientid="260387003734-qd2bpuqsuntptvg64nlpt601bhvtd26e.apps.googleusercontent.com"
+	data-redirecturi="postmessage"
+	data-accesstype="offline"
+	data-cookiepolicy="single_host_origin"
+	data-callback="signInCallback"
+	data-approvalprompt="force"></span> {# disable force in production #}
+</div>
+
+{# Google sign in callback #}
+<script>
+	function signInCallback(authResult) {
+		if (authResult['code']) {
+			// Hide sign-in button after user is authorized
+			$('#signinButton').attr('style', 'display: none');
+			// Send the one time use code to server
+			$.ajax({
+				type: 'POST',
+				url: '/gconnect?state={{STATE}}',
+				processData: false,
+				data: authResult['code'],
+				contentType: 'application/octet-stream; charset=utf-8',
+				success: function(result) {
+					// Handle server response when required
+					if (result) {
+						$('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+						setTimeout(function() {
+							window.location.href = "/catalog";
+						}, 4000);
+					} else if (authResult['error']) {
+						console.log('There was an error: ' + authResult['error']);
+					} else {
+						$('#result').html('Failed to make a server-side call. Check your configuration and console.');
+					}
+				}
+			});
+		}
+	}
+</script>
+
+<a href = "/catalog"> <p>Return to home page</p></a>
+
+<div id="result"></div>
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Delete Category {% endblock %}
+{% block header %} {{catalog.name}} - Delte {{category.name}} {% endblock %}
+{% block content %}
+
+<div>
+	<form action="#" method="post">
+		Are you sure you want to delete {{category.name}}?
+		<button type="submit"> <i class="material-icons"> done </i> </button>
+		<a href={{ url_for('viewCategories', catalog_id=catalog.id) }}> <i class="material-icons"> clear </i> </a>
+	</form>
+</div>
+
+{% endblock %}

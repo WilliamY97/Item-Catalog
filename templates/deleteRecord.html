@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Delete Record {% endblock %}
+{% block header %} {{catalog.name}} - {{category.name}}: Delete {{record.name}} {% endblock %}
+{% block content %}
+
+<div>
+	<form action="#" method="POST">
+		Are you sure you want to delete {{record.name}}?
+		<button type="submit"> <i class="material-icons"> done </i> </button>
+		<a href={{ url_for('viewRecords', catalog_id=catalog.id, category_id=category.id) }}> <i class="material-icons"> clear </i> </a>
+	</form>
+</div>
+
+{% endblock %}

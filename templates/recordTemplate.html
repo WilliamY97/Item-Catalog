@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %} Add New Template {% endblock %}
+{% block header %} {{catalog.name}} - {{category.name}}: New Record Template {% endblock %}
+{% block content %}
+
+<div>
+	<a href={{ url_for('viewRecords', catalog_id=catalog.id, category_id=category.id) }}> Back to {{category.name}} </a>
+</div>
+
+<div>
+	<form action="#" method="post">
+		<h2> Name Your Template </h2>
+		<div>
+			<label for="template-name"> New Template Name </label>
+			<input type="text" name="template-name" id="template-name">
+		</div>
+		<h2> Define Template Fields </h2>
+		<div id="field-descriptions">
+			<div id="1-field-description">
+				<div>
+					<label for="1-field-label"> Field Label </label>
+					<input type="text" name="1-field-label" id="1-field-label">
+				</div>
+				<br>
+				Field Kind:
+				<br>
+				<select id="1-field-kind-select" name="1-field-kind">
+					<option value="short_text"> Short Text </option>
+					<option value="long_text"> Long Text </option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div id="field-descriptions">
+			<div id="2-field-description">
+				<div>
+					<label for="2-field-label"> Field Label </label>
+					<input type="text" name="2-field-label" id="2-field-label">
+				</div>
+				<br>
+				Field Kind:
+				<br>
+				<select id="2-field-kind-select" name="2-field-kind">
+					<option value="short_text"> Short Text </option>
+					<option value="long_text"> Long Text </option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div id="field-descriptions">
+			<div id="3-field-description">
+				<div>
+					<label for="3-field-label"> Field Label </label>
+					<input type="text" name="3-field-label" id="3-field-label">
+				</div>
+				<br>
+				Field Kind:
+				<br>
+				<select id="3-field-kind-select" name="3-field-kind">
+					<option value="short_text"> Short Text </option>
+					<option value="long_text"> Long Text </option>
+				</select>
+			</div>
+		</div>				
+		<br>
+		<button type="submit"> <i class="material-icons"> done </i> </button>
+		<a href={{ url_for('addRecord', catalog_id=catalog.id, category_id=category.id) }}> <i class="material-icons"> clear </i> </a>
+	</form>
+</div>
+
+{% endblock %}

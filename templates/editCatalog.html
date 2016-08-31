@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} Edit Catalog {% endblock %}
+{% block header %} Rename {{catalog.name}} {% endblock %}
+{% block content %}
+
+<div>
+	<form action="#" method="post">
+		<div>
+			<label for="new-catalog-name"> New Catalog Name </label>
+			<input type="text" name="new-catalog-name" id="new-catalog-name">
+		</div>
+		<button type="submit"> <i class="material-icons"> done </i> </button>
+		<a href={{ url_for('viewCatalogs') }}> <i class="material-icons"> clear </i> </a>
+	</form>
+</div>
+
+{% endblock %}

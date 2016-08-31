@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %} Edit Record {% endblock %}
+{% block header %} {{catalog.name}} - {{category.name}}: Edit {{record.name}} {% endblock %}
+{% block content %}
+
+<div>
+	<form action="#" method="post">
+		<h2> Record Name </h2>
+		<div>
+			<label for="record-name"> Name of Record </label>
+			<input type="text" name="record-name" value="{{record.name}}" id="record-name">
+		</div>
+
+		<h2> Record Details </h2>
+		{% for fTemplate in fTemplates %}
+			{% if fTemplate['kind'] == "short_text" %}
+				<div>
+					<label for="short-text-field"> {{ fTemplate['label'] }} </label>
+					<input type="text" name="{{ fTemplate['id'] }}" value="{{ fTemplate['values'][0] }}" id="short-text-field" class="mdl-textfield__input">
+				</div>
+				<br>
+			{% endif %}
+
+			{% if fTemplate['kind'] == "long_text" %}
+				<div>
+					<label for="long-text-field"> {{ fTemplate['label'] }} </label>
+					<textarea type="text" maxlength="500" rows="3" name="{{ fTemplate['id'] }}" id="long-text-field">{{ fTemplate['values'][0] }}</textarea>
+				</div>
+				<br>
+			{% endif %}
+
+			{% if fTemplate['kind'] == "check_box" %}
+				{{ fTemplate['label'] }}:
+				<br>
+				{% for option, optionId in fTemplate['options'] %}
+					<label>
+						{% if option in fTemplate['values'] %}
+							<input type="checkbox", value="{{option}}" name="{{ fTemplate['id'] }}" id="checkbox-{{optionId}}" checked>
+							<span> {{option}} </span>
+						{% else %}
+							<input type="checkbox", value="{{option}}" name="{{ fTemplate['id'] }}" id="checkbox-{{optionId}}">
+							<span> {{option}} </span>
+						{% endif %}
+					</label>
+					<br>
+				{% endfor %}
+				<br>
+			{% endif %}
+
+			{% if fTemplate['kind'] == "radio" %}
+				{{ fTemplate['label'] }}:
+				<br>
+				{% for option, optionId in fTemplate['options'] %}
+					<label for="radio-{{optionId}}">
+						{% if option in fTemplate['values'] %}
+							<input type="radio", value="{{option}}" name="{{ fTemplate['id'] }}" id="radio-{{optionId}}" checked>
+							<span class="mdl-radio__label"> {{option}} </span>
+						{% else %}
+							<input type="radio", value="{{option}}" name="{{ fTemplate['id'] }}" id="radio-{{optionId}}">
+							<span class="mdl-radio__label"> {{option}} </span>
+						{% endif %}
+					</label>
+					<br>
+				{% endfor %}
+				<br>
+			{% endif %}
+
+			{% if fTemplate['kind'] == "drop_down" %}
+				{{ fTemplate['label'] }}:
+				<br>
+				<select name="{{ fTemplate['id'] }}">
+					{% for option, optionId in fTemplate['options'] %}
+						{% if option in fTemplate['values'] %}
+							<option value="{{option}}" selected> {{option}} </option>
+						{% else %}
+							<option value="{{option}}"> {{option}} </option>
+						{% endif %}
+					{% endfor %}
+				</select>
+				<br>
+			{% endif %}
+		{% endfor %}
+
+		<br>
+		<button type="submit"> <i class="material-icons"> done </i> </button>
+		<a href={{ url_for('viewRecords', catalog_id=catalog.id, category_id=category.id) }}> <i class="material-icons"> clear </i> </a>
+	</form>
+</div>
+
+{% endblock %}

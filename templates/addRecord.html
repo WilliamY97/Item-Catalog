@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} Templates {% endblock %}
+{% block header %} {{catalog.name}} - {{category.name}}: Add Record {% endblock %}
+{% block content %}
+
+<div>
+	<a href={{ url_for('viewRecords', catalog_id=catalog.id, category_id=category.id) }}> Back to {{category.name}} </a>
+	<br><br>
+	<a href={{ url_for('newRecordTemplate', catalog_id=catalog.id, category_id=category.id) }}> Create New Record Template </a>
+</div>
+
+<div >
+	{% if rTemplates %}
+		<h2> Your templates </h2>
+		{% for rTemplate in rTemplates %}
+			<ul>
+				<li class="mdl-list">
+					<a href={{ url_for('newRecord', catalog_id=catalog.id, category_id=category.id, record_template_id=rTemplate.id) }}> {{rTemplate.name}} </a>
+					{% if current_user == catalog.user_id %}
+						<a href={{ url_for('editRecordTemplate', catalog_id=catalog.id, category_id=category.id, record_template_id=rTemplate.id) }}> <i class="material-icons"> mode_edit </i> </a>
+						<a href={{ url_for('deleteRecordTemplate', catalog_id=catalog.id, category_id=category.id, record_template_id=rTemplate.id) }}> <i class="material-icons"> delete </i> </a>
+					{% endif %}
+				</li>
+			</ul>
+		{% endfor %}
+	{% endif %}
+</div>
+
+{% endblock %}

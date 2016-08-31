@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Record Details {% endblock %}
+{% block header %} {{catalog.name}} - {{category.name}}: {{record.name}} {% endblock %}
+{% block content %}
+
+<div>
+	<a href={{ url_for('viewRecords', catalog_id=catalog.id, category_id=category.id) }}> Back to {{category.name}} </a>
+</div>
+
+{% if fields %}
+	<div id="record-container">
+		<dl>
+		{% for field in fields %}
+			<dt>{{ field[0] }}</dt>
+			{% for value in field[1] %}
+				<dd>{{ value }}</dd>
+			{% endfor %}
+		{% endfor %}
+		</dl>
+	</div>
+{% endif %}
+
+{% endblock %}

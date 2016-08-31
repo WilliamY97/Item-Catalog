@@ -1,0 +1,38 @@
+body {
+
+background-color: #DDDDDD;
+
+}
+
+.navbar {
+border-radius:0;	
+background-color:#03203F;
+padding-left:20%;
+padding-right:20%;
+}
+
+.navbar-brand {
+color:white;
+font-size:25px;
+}
+
+.navbar-right {
+color:white;
+font-size:20px;	
+}
+
+.login {
+margin-top:10%;
+
+}
+
+.categories {
+border-right:1px solid #e2e2e2;
+min-height:400px;
+}
+
+.panel {
+margin-left:20%;
+margin-right:20%;
+min-height: 400px;
+}

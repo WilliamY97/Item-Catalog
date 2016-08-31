@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Categories {% endblock %}
+{% block header %} {{catalog.name}} - Categories {% endblock %}
+{% block content %}
+
+<div>
+	<a href={{ url_for('viewCatalogs') }}> Back to Catalogs </a>
+	{% if current_user == catalog.user_id %}
+		<br><br>
+		<a href={{ url_for('newCategory', catalog_id=catalog.id) }}> Create New Category </a>
+	{% endif %}
+</div>
+
+<div>
+	{% if categories %}
+		<h2>Categories</h2>
+		<ul>
+			{% for category in categories %}
+				<li class="mdl-list">
+					<a href={{ url_for('viewRecords', catalog_id=catalog.id, category_id=category.id) }}> {{ category.name }} </a>
+					{% if current_user == catalog.user_id %}
+						<a href={{ url_for('editCategory', catalog_id=catalog.id, category_id=category.id) }}> <i class="material-icons"> mode_edit </i> </a>
+						<a href={{ url_for('deleteCategory', catalog_id=catalog.id, category_id=category.id) }}> <i class="material-icons"> delete </i> </a>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+</div>
+
+{% endblock %}
