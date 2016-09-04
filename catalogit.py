@@ -11,7 +11,7 @@ from flask import session as login_session
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 
-import random, string, httplib2, json, requests
+import random, string, httplib2, json, requests, os
 
 from functools import wraps
 
@@ -716,7 +716,7 @@ def getFormattedFieldTemplatesWithOptions(record_template_id):
 
 def getFieldTemplatesValues(record_id):
     """Returns dictionaries with id, label, kind,
-     a list of options for that field template, 
+     a list of options for that field template,
      and the value(s) for that field."""
     record = getRecord(record_id)
     ftDictList = getFormattedFieldTemplatesWithOptions(
@@ -733,7 +733,7 @@ def getFieldTemplatesValues(record_id):
     return ftDictList
 
 
-# Helper Functions to delete 
+# Helper Functions to delete
 
 def deleteRecord(record_id):
     record = getRecord(record_id)
@@ -796,4 +796,5 @@ def deleteCatalog(catalog_id):
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
-    app.run(host='0.0.0.0', port=5001)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
