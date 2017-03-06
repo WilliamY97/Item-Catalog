@@ -3,7 +3,7 @@ bdist-mpkg==0.5.0
 click==6.7
 Flask-SQLAlchemy==0.16
 oauth2client==3.0.0
-requests==0.11.1
+requests==2.2.1
 Flask==0.12
 itsdangerous==0.24
 Jinja2==2.9.5
