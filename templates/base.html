@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	<meta name="google-site-verification" content="jCdANmL2p9o2qUxNmxXTrOI98Sx08SfNWefXqPc1bCc" />
 		{% block head %}
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title> 
-				{% block title %} Catalogizer {% endblock %} 
+			<title>
+				{% block title %} Catalogizer {% endblock %}
 			</title>
 			<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 			<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
@@ -23,7 +24,7 @@
 		      <a class="navbar-brand" style="color:white; font-size:20px;"><b>{% block header %}{% endblock %}</b></a>
 		    </div>
 		    <ul class="nav navbar-nav navbar-right">
-		      	<li>					
+		      	<li>
 		      	{% if 'username' not in session %}
 					<a style="color:white" href="{{ url_for('show_login') }}">Log In</a>
 				{% else %}
@@ -60,7 +61,7 @@
 
 	  		</div>
 		</div>
-			
+
 
 		</div>
 	</body>
